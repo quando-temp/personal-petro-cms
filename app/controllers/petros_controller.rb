@@ -1,0 +1,2 @@
+class PetrosController < ApplicationController
+end
