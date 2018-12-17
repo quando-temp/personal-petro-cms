@@ -20,13 +20,14 @@ class SessionsController < ApplicationController
        # Not quite right!
       flash[:alert] = 'Invalid email/password combination'
       render 'new'
-      
-  	end
- 	end
+    end
+  end
+
   
  	def destroy
     log_out
     flash[:success] = "You are logged out"
     redirect_to login_path
   end
+
 end

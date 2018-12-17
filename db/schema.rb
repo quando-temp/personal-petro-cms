@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181213100048) do
+ActiveRecord::Schema.define(version: 20181217084431) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -31,7 +31,26 @@ ActiveRecord::Schema.define(version: 20181213100048) do
     t.string "phone"
     t.string "car_number"
     t.string "company"
-    t.integer "type"
+    t.integer "type_customer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "employees", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "phone"
+    t.string "gender"
+    t.string "address"
+    t.string "department"
+    t.string "position"
+    t.float "salary", limit: 24
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "fuels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,13 +58,24 @@ ActiveRecord::Schema.define(version: 20181213100048) do
   create_table "petros", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.float "money", limit: 24
     t.float "amount", limit: 24
-    t.integer "type_fuel"
+    t.string "type_fuel"
     t.float "price_fuel", limit: 24
     t.datetime "day_fuel"
     t.bigint "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_petros_on_customer_id"
+  end
+
+  create_table "stations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "logo"
+    t.string "name"
+    t.string "address"
+    t.string "hotline"
+    t.bigint "admin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_stations_on_admin_id"
   end
 
 end

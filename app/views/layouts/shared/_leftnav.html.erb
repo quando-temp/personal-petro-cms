@@ -1,5 +1,9 @@
 <div class="navbar nav_title" style="border: 0;">
-  <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+  <a href="index.html" class="site_title"><i class="fa fa-paw"></i> 
+  <% if current_user.station %>
+    <span><%= current_user.station.name %></span>
+  <% end %>
+  </a>
 </div>
 
 <div class="clearfix"></div>
@@ -11,7 +15,7 @@
   </div>
   <div class="profile_info">
     <span>Welcome,</span>
-    <h2>John Doe</h2>
+    <h2><%= current_user.name %></h2>
   </div>
 </div>
 <!-- /menu profile quick info -->
@@ -25,41 +29,51 @@
     <ul class="nav side-menu">
       <li><a><i class="fa fa-home"></i>Trang Phân Tích<span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="index.html">Dashboard</a></li>
+          <%# <li><a href="index.html">Dashboard</a></li>
           <li><a href="index2.html">Dashboard2</a></li>
-          <li><a href="index3.html">Dashboard3</a></li>
+          <li><a href="index3.html">Dashboard3</a></li> %>
         </ul>
       </li>
       <li><a><i class="fa fa-edit"></i>Khách hàng<span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="form.html">Thêm Khách Hàng</a></li>
-          <li><a href="form_advanced.html">Danh Sách Khách Hàng</a></li>
+          <li><%= link_to 'Thêm Khách Hàng', new_customer_path %></li>
+          <li><%= link_to 'Danh Sách Khách Hàng', customers_path %></li>
         </ul>
       </li>
-      <li><a><i class="fa fa-desktop"></i> Theo Dõi Khách Hàng<span class="fa fa-chevron-down"></span></a>
+      <li><a><i class="fa fa-desktop"></i>Hoạt Động Khách Hàng<span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="general_elements.html">Khách Hàng Tiêm Năng</a></li>
-          <li><a href="media_gallery.html">Kêu Gọi Khách Hàng</a></li>
-          <li><a href="media_gallery.html">Chi Tiêu Khách Hàng</a></li>
+          <li><%= link_to 'Kêu Gọi Khách Hàng',calls_path %></li>
+          <li><%= link_to 'Giao Dịch', petros_path %></li>
         </ul>
       </li>
-      <li><a><i class="fa fa-table"></i>Tình Hình Kinh Doanh<span class="fa fa-chevron-down"></span></a>
+      <%# <li><a><i class="fa fa-table"></i>Tình Hình Kinh Doanh<span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
+          <li><a href="tables_dynamic.html">Đầu tư - Chi trả</a></li>
           <li><a href="tables.html">Nguồn Thu</a></li>
-          <li><a href="tables_dynamic.html">Nguồn Vốn</a></li>
-        </ul>
+        </ul> %>
       </li>
     </ul>
   </div>
   <div class="menu_section">
     <h3>Phần Quản Lý Doanh Nghiệp</h3>
     <ul class="nav side-menu">
-      <li><a><i class="fa fa-bug"></i>Sửa Đổi Thông Tin</a>
+      <li>
+        <%= link_to 'Thông Tin DN', edit_station_path(current_user.station) %>
+      </li>
+      <li>
+        <%= link_to 'Thông Tin Cá Nhân', edit_admin_path(current_user.id) %>
       </li>
       <li><a><i class="fa fa-windows"></i>Nhân Viên <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="page_403.html">Thêm Nhân Viên</a></li>
-          <li><a href="page_404.html">Danh Sách Nhân Viên</a></li>
+          <li><%= link_to 'Thêm Nhân Viên', new_employee_path %></li>
+          <li><%= link_to 'Danh Sách Nhân Viên', employees_path %></li>
+        </ul>
+      </li>
+      <li><a><i class="fa fa-windows"></i>Phân Quyền Quản lý<span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><%= link_to 'Thêm Quản Lý', new_admin_path %></li>
+          <li><%= link_to 'Danh Sách Quản Lý', admins_path %></li>
         </ul>
       </li>
     </ul>

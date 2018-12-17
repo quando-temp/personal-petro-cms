@@ -5,7 +5,7 @@ class CreateCustomers < ActiveRecord::Migration[5.1]
     	t.string :phone
     	t.string :car_number
     	t.string :company
-      t.integer :type
+      t.integer :type_customer
 
       t.timestamps
     end
