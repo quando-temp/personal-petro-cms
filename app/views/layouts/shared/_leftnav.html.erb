@@ -1,0 +1,101 @@
+<div class="navbar nav_title" style="border: 0;">
+  <a href="index.html" class="site_title"><i class="fa fa-paw"></i> 
+  <% if current_user.station %>
+    <span><%= current_user.station.name %></span>
+  <% end %>
+  </a>
+</div>
+
+<div class="clearfix"></div>
+
+<!-- menu profile quick info -->
+<div class="profile clearfix">
+  <div class="profile_pic">
+    <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+  </div>
+  <div class="profile_info">
+    <span>Welcome,</span>
+    <h2><%= current_user.name %></h2>
+  </div>
+</div>
+<!-- /menu profile quick info -->
+
+<br />
+
+<!-- sidebar menu -->
+<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+  <div class="menu_section">
+    <h3>General</h3>
+    <ul class="nav side-menu">
+      <li><a><i class="fa fa-home"></i>Trang Phân Tích<span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <%# <li><a href="index.html">Dashboard</a></li>
+          <li><a href="index2.html">Dashboard2</a></li>
+          <li><a href="index3.html">Dashboard3</a></li> %>
+        </ul>
+      </li>
+      <li><a><i class="fa fa-edit"></i>Khách hàng<span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><%= link_to 'Thêm Khách Hàng', new_customer_path %></li>
+          <li><%= link_to 'Danh Sách Khách Hàng', customers_path %></li>
+        </ul>
+      </li>
+      <li><a><i class="fa fa-desktop"></i>Hoạt Động Khách Hàng<span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><a href="general_elements.html">Khách Hàng Tiêm Năng</a></li>
+          <li><%= link_to 'Kêu Gọi Khách Hàng',calls_path %></li>
+          <li><%= link_to 'Giao Dịch', petros_path %></li>
+        </ul>
+      </li>
+      <%# <li><a><i class="fa fa-table"></i>Tình Hình Kinh Doanh<span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><a href="tables_dynamic.html">Đầu tư - Chi trả</a></li>
+          <li><a href="tables.html">Nguồn Thu</a></li>
+        </ul> %>
+      </li>
+    </ul>
+  </div>
+  <div class="menu_section">
+    <h3>Phần Quản Lý Doanh Nghiệp</h3>
+    <ul class="nav side-menu">
+      <li>
+        <%= link_to 'Thông Tin DN', edit_station_path(current_user.station) %>
+      </li>
+      <li>
+        <%= link_to 'Thông Tin Cá Nhân', edit_admin_path(current_user.id) %>
+      </li>
+      <li><a><i class="fa fa-windows"></i>Nhân Viên <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><%= link_to 'Thêm Nhân Viên', new_employee_path %></li>
+          <li><%= link_to 'Danh Sách Nhân Viên', employees_path %></li>
+        </ul>
+      </li>
+      <li><a><i class="fa fa-windows"></i>Phân Quyền Quản lý<span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><%= link_to 'Thêm Quản Lý', new_admin_path %></li>
+          <li><%= link_to 'Danh Sách Quản Lý', admins_path %></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+</div>
+<!-- /sidebar menu -->
+
+<!-- /menu footer buttons -->
+<div class="sidebar-footer hidden-small">
+  <a data-toggle="tooltip" data-placement="top" title="Settings">
+    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+  </a>
+  <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+    <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+  </a>
+  <a data-toggle="tooltip" data-placement="top" title="Lock">
+    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+  </a>
+  <%= link_to logout_path, method: :delete do %>
+    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+  <% end %>
+</div>
+<!-- /menu footer buttons -->
+
