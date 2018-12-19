@@ -29,7 +29,7 @@ class AdminsController < ApplicationController
 
   def update
     if @admin.update(admin_params)
-      redirect_to @admins, notice: 'Admin đã được cập nhật.' 
+      redirect_to edit_admin_path(@admin), notice: 'Admin đã được cập nhật.' 
     else
       render :edit
     end

@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :calls
   resources :employees
   resources :stations
+  get "/petros/:id/calltimes" => 'calltimes#new', :as => 'calltimes'
+  get "/customer/search" => 'customers#search_customer', :as => 'search_customer'
+  post "/customer/search" => 'customers#search', :as => 'searched_customer'
+  post "/petros/:id/calltimes" => 'calltimes#create', :as => 'create_calltimes'
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

@@ -1,0 +1,124 @@
+<div class="">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>Tạo cuộc gọi</h3>
+    </div>
+    <div class="title_right">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Settings 1</a>
+                </li>
+                <li><a href="#">Settings 2</a>
+                </li>
+              </ul>
+            </li>
+            <li><a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+          <p> Lưu ý về việc lưu lại cuộc gọi: Hãy thực hiện cuộc gọi đến số thuê bao trước, và lưu lại kết quả trong mục điền thông tin ở bên dưới.</p>
+        </div>
+        <div class="x_content">
+          <br />
+          <%= form_for @calltime, url: create_calltimes_path(@petro_id), method: 'POST', :html => {:class => 'form-horizontal form-label-left'} do |f| %>
+            <%= f.hidden_field :petro_id, :value => @petro_id%>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">Kết quả</label>
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <%= select_tag(:result, options_for_select([['Đạt mong đợi', 0],['Không như mong đợi',1]])) %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Ghi chú</label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <%= f.text_field :notice, class: 'form-control col-md-7 col-xs-12' %>
+              </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                <%= link_to 'Thoát ra', customers_path,  { :class => 'btn btn-primary' } %>
+                <%= f.submit 'Lưu cuộc gọi', class: 'btn btn-success'%>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-title">
+  <div class="title_left">
+    <h3>Danh sách cuộc gọi đã thực hiện</h3>
+  </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Settings 1</a>
+              </li>
+              <li><a href="#">Settings 2</a>
+              </li>
+            </ul>
+          </li>
+          <li><a class="close-link"><i class="fa fa-close"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table id="datatable1" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Kết quả</th>
+              <th>Ghi chú</th>
+              <th>Tác vụ</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @calltimes.each do |em| %>
+              <tr>
+                <td><%= em.id %></td>
+                <td><%= em.result %></td>
+                <td><%= em.notice %></td>
+                <td>
+                  <%= link_to "Sửa", edit_employee_path(em), :class => 'btn btn-warning' %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

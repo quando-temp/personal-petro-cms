@@ -36,7 +36,7 @@
       </li>
       <li><a><i class="fa fa-edit"></i>Khách hàng<span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><%= link_to 'Thêm Khách Hàng', new_customer_path %></li>
+          <li><%= link_to 'Thêm, Tìm Khách Hàng', search_customer_path %></li>
           <li><%= link_to 'Danh Sách Khách Hàng', customers_path %></li>
         </ul>
       </li>
@@ -63,6 +63,12 @@
       </li>
       <li>
         <%= link_to 'Thông Tin Cá Nhân', edit_admin_path(current_user.id) %>
+      </li>
+      <li><a><i class="fa fa-windows"></i>Quản Lý Nhiên Liệu <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><%= link_to 'Thêm Nhiên Liệu', new_fuel_path %></li>
+          <li><%= link_to 'Danh Sách Nhiên Liệu', fuels_path %></li>
+        </ul>
       </li>
       <li><a><i class="fa fa-windows"></i>Nhân Viên <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">

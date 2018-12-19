@@ -3,6 +3,12 @@ class CustomersController < ApplicationController
 
   def new
     @customer = Customer.new
+    uri   = URI.parse(request.fullpath)
+    if uri.query
+      params = CGI.parse(uri.query)
+      content   = params['car'].first
+      @customer.car_number = content
+    end
     @fuels = Fuel.all
     @petro = @customer.petros.build
   end
@@ -44,6 +50,20 @@ class CustomersController < ApplicationController
   def destroy
     @customer.destroy
     redirect_to customers_path, notice: 'Khách hàng đã được xóa.' 
+  end
+
+  def search_customer
+    @customer = Customer.new
+  end
+
+  def search
+    @customer = Customer.find_by(car_number: params[:customer][:car_number])
+    if @customer
+      redirect_to @customer, notice: 'Khách hàng đã tồn tại. Đến trang thông tin khách hàng.' 
+    else
+      redirect_to new_customer_path(car: params[:customer][:car_number]), notice: 'Biến số xe không tồn tại, vui lòng tạo khách hàng mới.' 
+    end
+
   end
 
   private
