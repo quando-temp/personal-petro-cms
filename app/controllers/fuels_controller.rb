@@ -10,9 +10,11 @@ class FuelsController < ApplicationController
   def create
     @fuel = Fuel.new(name: params[:name], price: params[:price])
     if @fuel.save
-        redirect_to root_path, notice: "Create brands completed!"
+        flash[:success] = 'Tạo nhiên liệu thành công.'
+        redirect_to root_path
     else
-        redirect_to root_path, notice: "Failed!"
+        flash[:success] = 'Tạo nhiên liệu thất bại.'
+        redirect_to root_path
     end
 	end
 end

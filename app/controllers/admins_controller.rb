@@ -8,7 +8,8 @@ class AdminsController < ApplicationController
   def create
     @admin = Admin.new(admin_params)
     if @admin.save 
-      redirect_to admins_path, notice: 'Admin đã được tạo.' 
+      flash[:success] = 'Admin đã được tạo.'
+      redirect_to admins_path
     else
       render :new 
     end
@@ -29,7 +30,8 @@ class AdminsController < ApplicationController
 
   def update
     if @admin.update(admin_params)
-      redirect_to edit_admin_path(@admin), notice: 'Admin đã được cập nhật.' 
+      flash[:success] = 'Admin đã được cập nhật.'
+      redirect_to edit_admin_path(@admin) 
     else
       render :edit
     end
@@ -37,7 +39,8 @@ class AdminsController < ApplicationController
 
   def destroy
     @admin.destroy
-    redirect_to employees_path, notice: 'Nhân viên đã được xóa.' 
+    flash[:danger] = 'Nhân viên đã được xóa..'
+    redirect_to employees_path
   end
 
   private

@@ -8,7 +8,8 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(employee_params)
     if @employee.save 
-      redirect_to employees_path, notice: 'Nhân viên đã được tạo.' 
+      flash[:success] = 'Nhân viên đã được tạo.'
+      redirect_to employees_path 
     else
       render :new 
     end
@@ -29,7 +30,8 @@ class EmployeesController < ApplicationController
 
   def update
     if @@employee.update(employee_params)
-      redirect_to @employees, notice: 'Admin was successfully updated.' 
+      flash[:success] = 'Nhân viên đã được cập nhật.'
+      redirect_to @employees
     else
       render :edit
     end
@@ -37,7 +39,8 @@ class EmployeesController < ApplicationController
 
   def destroy
     @employee.destroy
-    redirect_to employees_path, notice: 'Nhân viên đã được xóa.' 
+    flash[:danger] = 'Nhân viên đã được xóa.'
+    redirect_to employees_path
   end
 
   private

@@ -12,7 +12,8 @@ class PetrosController < ApplicationController
     params[:petro][:type_fuel] = fuel.name
     @petro = Petro.new(petro_params)
     if @petro.save 
-      redirect_to customer_path(petro_params[:customer_id]), notice: 'Giao dịch đã được tạo.' 
+      flash[:success] = 'Giao dịch đã được tạo.'
+      redirect_to customer_path(petro_params[:customer_id])
     else
       render :new 
     end
@@ -26,7 +27,8 @@ class PetrosController < ApplicationController
   def destroy
     cus_id = @petro.customer_id
     @petro.destroy
-    redirect_to customer_path(cus_id), notice: 'Giao dịch đã được xóa.' 
+    flash[:success] = 'Giao dịch đã được xóa.'
+    redirect_to customer_path(cus_id) 
   end
 
   def update
@@ -35,7 +37,8 @@ class PetrosController < ApplicationController
     params[:petro][:price_fuel] = fuel.price
     params[:petro][:type_fuel] = fuel.name
     if @petro.update(petro_params)
-      redirect_to customer_path(@petro.customer_id), notice: 'Nội dung giao dịch đã được sửa' 
+      flash[:success] = 'Nội dung giao dịch đã được sửa'
+      redirect_to customer_path(@petro.customer_id)
     else
       render :edit
     end

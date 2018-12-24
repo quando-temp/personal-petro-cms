@@ -8,9 +8,11 @@ class CalltimesController < ApplicationController
   def create
     @call_time = Calltime.new(calltime_params)
     if @call_time.save
-        redirect_to calls_path, notice: "Cuộc gọi đã được lưu!"
+      flash[:success] = 'Cuộc gọi đã được lưu!'
+      redirect_to calls_path
     else
-        redirect_to calls_path, notice: "Cuộc gọi lưu thất bại!"
+      flash[:warning] = 'Cuộc gọi lưu thất bại!'
+      redirect_to calls_path
     end
   end
 

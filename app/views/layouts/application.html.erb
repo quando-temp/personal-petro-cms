@@ -15,6 +15,9 @@
 
   <% if logged_in? == true %>
     <body class="nav-md">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: [:alert, alert_for(name)] %>
+      <% end %>
       <div class="container body">
         <div class="main_container">
           <div class="col-md-3 left_col">
@@ -47,6 +50,9 @@
         </div>
       </div>
     <% else %>
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: [:alert, alert_for(name)] %>
+      <% end %>
       <body class="login">
         <%= yield %>
     <% end %>

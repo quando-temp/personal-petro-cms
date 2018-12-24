@@ -35,7 +35,8 @@ class StationsController < ApplicationController
 
   def update
     if @station.update(station_params)
-      redirect_to edit_station_path(@station), notice: 'Cập nhật thông tin thành công.' 
+      flash[:success] = 'Cập nhật thông tin thành công.'
+      redirect_to edit_station_path(@station)
     else
       render :edit
     end
