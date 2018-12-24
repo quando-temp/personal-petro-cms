@@ -57,7 +57,9 @@
             <div class="form-group">
               <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Biển số xe</label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <%= f.text_field :car_number, class: 'form-control col-md-7 col-xs-12', disabled: @customer.car_number? %>
+                <% if @customer.car_number %>
+                <input class="form-control col-md-7 col-xs-12" value="<%= @customer.car_number %>" disabled>
+                <% end %>
                 <%= f.hidden_field :car_number, :value => @customer.car_number %>
               </div>
             </div>
