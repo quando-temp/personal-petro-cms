@@ -39,7 +39,7 @@ class EmployeesController < ApplicationController
 
   def destroy
     @employee.destroy
-    flash[:danger] = 'Nhân viên đã được xóa.'
+    flash[:error] = 'Nhân viên đã được xóa.'
     redirect_to employees_path
   end
 

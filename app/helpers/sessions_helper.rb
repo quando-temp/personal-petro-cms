@@ -23,7 +23,7 @@ module SessionsHelper
    # Confirms a logged-in user.
   # def user_signed_in?
   #   unless logged_in?
-  #     flash[:danger] = "Please log in."
+  #     flash[:error] = "Please log in."
   #     redirect_to login_path
   #   end
   # end

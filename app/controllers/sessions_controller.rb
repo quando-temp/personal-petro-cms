@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
     else
       # Create an error message.
        # Not quite right!
-      flash[:alert] = 'Sai Email hoặc Password. Vui Lòng kiểm tra lại!'
+      flash[:error] = 'Sai Email hoặc Password. Vui Lòng kiểm tra lại!'
       render 'new'
     end
   end
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
   
  	def destroy
     log_out
-    flash[:warning] = "Bạn đã đăng xuất"
+    flash[:alert] = "Bạn đã đăng xuất"
     redirect_to login_path
   end
 

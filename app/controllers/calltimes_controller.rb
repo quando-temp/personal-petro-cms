@@ -11,7 +11,7 @@ class CalltimesController < ApplicationController
       flash[:success] = 'Cuộc gọi đã được lưu!'
       redirect_to calls_path
     else
-      flash[:warning] = 'Cuộc gọi lưu thất bại!'
+      flash[:alert] = 'Cuộc gọi lưu thất bại!'
       redirect_to calls_path
     end
   end

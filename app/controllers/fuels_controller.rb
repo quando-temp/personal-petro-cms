@@ -8,13 +8,39 @@ class FuelsController < ApplicationController
   end
 
   def create
-    @fuel = Fuel.new(name: params[:name], price: params[:price])
+    @fuel = Fuel.new(fuel_params)
     if @fuel.save
         flash[:success] = 'Tạo nhiên liệu thành công.'
-        redirect_to root_path
+        redirect_to fuels_path
     else
-        flash[:success] = 'Tạo nhiên liệu thất bại.'
-        redirect_to root_path
+        flash[:alert] = @fuel.errors.full_messages.join('  ;  ')
+        render :new
     end
-	end
+  end
+
+  def edit
+    @fuel = Fuel.find(params[:id])
+  end
+  
+  def update
+    @fuel = Fuel.find(params[:id])
+    if @fuel.update(fuel_params)
+      flash[:success] = 'Nội dung giao dịch đã được sửa'
+      redirect_to fuels_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @fuel = Fuel.find(params[:id])
+    @fuel.destroy
+    flash[:error] = 'Nhiên liệu đã được xóa.'
+    redirect_to fuels_path
+  end
+
+  private
+  def fuel_params
+  	params.require(:fuel).permit(:name, :price) 
+  end
 end

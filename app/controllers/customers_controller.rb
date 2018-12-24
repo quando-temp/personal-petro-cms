@@ -18,12 +18,14 @@ class CustomersController < ApplicationController
     fuel = Fuel.find(params["type_of_fuel"])
     params[:customer][:petros_attributes]["0"][:price_fuel] = fuel.price
     params[:customer][:petros_attributes]["0"][:type_fuel] = fuel.name
+    params[:customer][:type_customer] = Integer(customer_params[:type_customer])
     @customer = Customer.new(customer_params)
     if @customer.save 
       flash[:success] = 'Khách hàng đã được tạo.'
       redirect_to @customer
     else
-      render :new 
+      flash[:alert] = @customer.errors.full_messages.join('  ;  ')
+      redirect_to new_customer_path(car: params[:customer][:car_number])
     end
   end
 
@@ -51,7 +53,7 @@ class CustomersController < ApplicationController
 
   def destroy
     @customer.destroy
-    flash[:danger] = 'Khách hàng đã được xóa.'
+    flash[:error] = 'Khách hàng đã được xóa.'
     redirect_to customers_path
   end
 
@@ -62,7 +64,7 @@ class CustomersController < ApplicationController
   def search
     @customer = Customer.find_by(car_number: params[:customer][:car_number])
     if @customer
-      flash[:warning] = 'Khách hàng đã tồn tại. Đến trang thông tin khách hàng.'
+      flash[:alert] = 'Khách hàng đã tồn tại. Đến trang thông tin khách hàng.'
       redirect_to @customer
     else
       redirect_to new_customer_path(car: params[:customer][:car_number]), notice: 'Biến số xe không tồn tại, vui lòng tạo khách hàng mới.' 

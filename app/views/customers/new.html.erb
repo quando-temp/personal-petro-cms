@@ -58,7 +58,7 @@
               <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Biển số xe</label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <% if @customer.car_number %>
-                <input class="form-control col-md-7 col-xs-12" value="<%= @customer.car_number %>" disabled>
+                  <input class="form-control col-md-7 col-xs-12" value="<%= @customer.car_number %>" disabled>
                 <% end %>
                 <%= f.hidden_field :car_number, :value => @customer.car_number %>
               </div>
@@ -74,12 +74,12 @@
               <label class="control-label col-md-3 col-sm-3 col-xs-12">Loại Khách Hàng</label>
               <div class="checkbox col-md-2 col-sm-2 col-xs-12">
                 <label>
-                  <%= f.radio_button :type_customer, 0, :checked => true, class: 'flat' %> Thường xuyên
+                  <%= f.radio_button :type_customer, Integer(0), :checked => true, class: 'flat' %> Thường xuyên
                 </label>
               </div>
               <div class="checkbox col-md-3 col-sm-2 col-xs-12">
                 <label>
-                  <%= f.radio_button :type_customer, 1, :checked => true, class: 'flat' %> Không thường xuyên
+                  <%= f.radio_button :type_customer, Integer(1), class: 'flat' %> Không thường xuyên
                 </label>
               </div>
             </div>

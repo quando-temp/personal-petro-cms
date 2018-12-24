@@ -8,15 +8,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag 'application', media: 'all' %>
-
     <title><%= yield :title %></title>
-
   </head>
 
   <% if logged_in? == true %>
     <body class="nav-md">
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, class: [:alert, alert_for(name)] %>
+      <% flash.each do |name, msg|
+        arr = msg.split('  ;  ')
+        if arr.length > 0 %>
+        <div class="<%= 'alert ' + alert_for(name)%>">
+          <% arr.each do |item| %>
+            <span style="margin-right: 20px">✦</span><%= item %> <br>
+          <% end %>
+        </div>
+        <% else %>
+          <%= content_tag :div, msg, class: [:alert, alert_for(name)] %>
+        <% end %>
       <% end %>
       <div class="container body">
         <div class="main_container">

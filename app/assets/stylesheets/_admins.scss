@@ -6,10 +6,16 @@
   z-index: 1000;
   width: 100%;
   top: 0;
+  color: white;
   animation: cssAnimation 0s 5s forwards;
   visibility: visible;
+  font-size: 15px;
 }
 
 @keyframes cssAnimation {
   to   { visibility: hidden; }
+}
+
+.alert-warning {
+  animation: cssAnimation 0s 15s forwards;
 }
