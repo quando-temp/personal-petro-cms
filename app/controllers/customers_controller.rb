@@ -63,12 +63,13 @@ class CustomersController < ApplicationController
   end
 
   def search
-    @customer = Customer.find_by(car_number: params[:customer][:car_number].gsub(/\s+/, "").upcase)
+    search_num = (params[:car_location] + '-' + params[:car_num]).gsub(/\s+/, "").upcase
+    @customer = Customer.find_by(car_number: search_num)
     if @customer
       flash[:alert] = 'Khách hàng đã tồn tại. Đến trang thông tin khách hàng.'
       redirect_to @customer
     else
-      redirect_to new_customer_path(car: params[:customer][:car_number]), notice: 'Biến số xe không tồn tại, vui lòng tạo khách hàng mới.' 
+      redirect_to new_customer_path(car: search_num), notice: 'Biến số xe không tồn tại, vui lòng tạo khách hàng mới.' 
     end
 
   end
