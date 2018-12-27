@@ -19,6 +19,7 @@ class CustomersController < ApplicationController
     params[:customer][:petros_attributes]["0"][:price_fuel] = fuel.price
     params[:customer][:petros_attributes]["0"][:type_fuel] = fuel.name
     params[:customer][:type_customer] = Integer(customer_params[:type_customer])
+    params[:customer][:car_number] = params[:customer][:car_number].gsub(/\s+/, "").upcase
     @customer = Customer.new(customer_params)
     if @customer.save 
       flash[:success] = 'Khách hàng đã được tạo.'
@@ -62,7 +63,7 @@ class CustomersController < ApplicationController
   end
 
   def search
-    @customer = Customer.find_by(car_number: params[:customer][:car_number])
+    @customer = Customer.find_by(car_number: params[:customer][:car_number].gsub(/\s+/, "").upcase)
     if @customer
       flash[:alert] = 'Khách hàng đã tồn tại. Đến trang thông tin khách hàng.'
       redirect_to @customer
