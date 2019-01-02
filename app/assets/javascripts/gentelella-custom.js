@@ -2540,7 +2540,35 @@ if (typeof NProgress != 'undefined') {
 					  ],
 					  responsive: true
 					});
-				  }
+					}
+					if ($("#datatable-buttons1").length) {
+						$("#datatable-buttons1").DataTable({
+							dom: "Bfrtip",
+							buttons: [
+							{
+								extend: "copy",
+								className: "btn-sm"
+							},
+							{
+								extend: "csv",
+								className: "btn-sm"
+							},
+							{
+								extend: "excel",
+								className: "btn-sm"
+							},
+							{
+								extend: "pdfHtml5",
+								className: "btn-sm"
+							},
+							{
+								extend: "print",
+								className: "btn-sm"
+							},
+							],
+							responsive: true
+						});
+						}
 				};
 
 				TableManageButtons = function() {
