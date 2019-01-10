@@ -6,10 +6,11 @@ class PetrosController < ApplicationController
   end
 
   def create
-    params[:petro][:day_fuel] = DateTime.strptime(params["day_fuel"], '%m/%d/%Y')
-    fuel = Fuel.find(params["type_of_fuel"])
+    params[:petro][:day_fuel] = DateTime.strptime(params["day_fuel"], '%d/%m/%Y')
+    fuel = Fuel.find(JSON.parse(params["type_of_fuel"])[0])
     params[:petro][:price_fuel] = fuel.price
     params[:petro][:type_fuel] = fuel.name
+    params[:petro][:amount] = Float(params[:petro][:money])/Float(params[:petro][:price_fuel])
     @petro = Petro.new(petro_params)
     if @petro.save 
       flash[:success] = 'Giao dịch đã được tạo.'
@@ -32,7 +33,7 @@ class PetrosController < ApplicationController
   end
 
   def update
-    params[:petro][:day_fuel] = DateTime.strptime(params["day_fuel"], '%m/%d/%Y')
+    params[:petro][:day_fuel] = DateTime.strptime(params["day_fuel"], '%d/%m/%Y')
     fuel = Fuel.find(params["type_of_fuel"])
     params[:petro][:price_fuel] = fuel.price
     params[:petro][:type_fuel] = fuel.name

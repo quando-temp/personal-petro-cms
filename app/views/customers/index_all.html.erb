@@ -1,6 +1,6 @@
 <div class="page-title">
   <div class="title_left">
-    <h3>Danh sách tổng hợp <small>tất cả khách hàng</small></h3>
+    <h3>Danh sách kết xuất <small>tất cả khách hàng</small></h3>
   </div>
 </div>
 <div class="clearfix"></div>
@@ -37,8 +37,9 @@
               <th>Biển số xe</th>
               <th>SĐT</th>
               <th>Ngày giao dịch gần nhất</th>
-              <th>Tổng số lít (lit)</th>
-              <th>Tổng số tiền</th>
+              <th>Số lít (lit)</th>
+              <th>Đơn giá</th>
+              <th>Thành tiền</th>
               <th>Loại khách hàng</th>
               <th>Tên công ty</th>
               <th>Tác vụ</th>
@@ -47,21 +48,32 @@
 
           <tbody>
             <% @customers.each do |customer| %>
-              <tr>
-                <td><%= customer.name %></td>
-                <td><%= customer.car_number %></td>
-                <td><%= customer.phone %></td>
-                <% petros = Customer.find(customer.id).petros.order('day_fuel DESC') %>
-                <td><%= petros[0].day_fuel.strftime('%d/%m/%Y') %></td>
-                <td><%= petros.inject(0){|sum,x| sum + x.amount }%></td>
-                <td><%= petros.inject(0){|sum,x| sum + x.money }%></td>
-                <td><%= customer.type_customer %></td>
-                <td><%= customer.company %></td>
-                <td>
-                  <%= link_to "Chi tiết", edit_customer_path(customer), { :class => 'btn btn-primary' } %>
-                  <%= link_to "Thêm giao dịch", customer_path(customer), { :class => 'btn btn-warning' } %>
-                </td>
-              </tr>
+              <% petros = Customer.find(customer.id).petros.order('day_fuel DESC') %>
+              <% petros.each do |petro| %>
+                <tr>
+                  <td><%= petro.customer.name %></td>
+                  <td><%= petro.customer.car_number %></td>
+                  <td><%= petro.customer.phone %></td>
+                  <td>
+                    <%= petro.day_fuel.strftime('%d/%m/%Y')%><br>
+                  </td>
+                  <td>
+                    <%= petro.amount%><br>
+                  </td>
+                  <td>
+                    <%= petro.price_fuel%><br>
+                  </td>
+                  <td>
+                    <%= petro.money%><br>
+                  </td>
+                  <td><%= petro.customer.type_customer %></td>
+                  <td><%= petro.customer.company %></td>
+                  <td>
+                    <%= link_to "Chi tiết", edit_customer_path(petro.customer), { :class => 'btn btn-primary' } %>
+                    <%= link_to "Thêm giao dịch", customer_path(petro.customer), { :class => 'btn btn-warning' } %>
+                  </td>
+                </tr>
+              <% end %>
             <% end %>
           </tbody>
         </table>

@@ -1605,7 +1605,7 @@ if (typeof NProgress != 'undefined') {
 			  buttonClasses: ['btn btn-default'],
 			  applyClass: 'btn-small btn-primary',
 			  cancelClass: 'btn-small',
-			  format: 'MM/DD/YYYY',
+			  format: 'DD/MM/YYYY',
 			  separator: ' to ',
 			  locale: {
 				applyLabel: 'Submit',
@@ -1642,7 +1642,9 @@ if (typeof NProgress != 'undefined') {
 			$('#destroy').click(function() {
 			  $('#reportrange').data('daterangepicker').remove();
 			});
-
+			// $('.daterangepicker').datepicker({
+			// 	format: 'dd/mm/yyyy'
+		 	// });
 		}
 
 	   function init_daterangepicker_right() {
@@ -1680,7 +1682,7 @@ if (typeof NProgress != 'undefined') {
 				  buttonClasses: ['btn btn-default'],
 				  applyClass: 'btn-small btn-primary',
 				  cancelClass: 'btn-small',
-				  format: 'MM/DD/YYYY',
+				  format: 'DD/MM/YYYY',
 				  separator: ' to ',
 				  locale: {
 					applyLabel: 'Submit',
@@ -1731,26 +1733,37 @@ if (typeof NProgress != 'undefined') {
 			console.log('init_daterangepicker_single_call');
 
 			$('#single_cal1').daterangepicker({
-			  singleDatePicker: true,
-			  singleClasses: "picker_1"
+				singleDatePicker: true,
+				locale: {
+					singleClasses: "picker_1"
+				},
 			}, function(start, end, label) {
 			  console.log(start.toISOString(), end.toISOString(), label);
 			});
 			$('#single_cal2').daterangepicker({
-			  singleDatePicker: true,
+				singleDatePicker: true,
+				locale: {
+					format: 'DD/MM/YYYY'
+				},
 			  singleClasses: "picker_2"
 			}, function(start, end, label) {
 			  console.log(start.toISOString(), end.toISOString(), label);
 			});
 			$('#single_cal3').daterangepicker({
-			  singleDatePicker: true,
+				singleDatePicker: true,
+				locale: {
+					format: 'DD/MM/YYYY'
+				},
 			  singleClasses: "picker_3"
 			}, function(start, end, label) {
 			  console.log(start.toISOString(), end.toISOString(), label);
 			});
 			$('#single_cal4').daterangepicker({
-			  singleDatePicker: true,
-			  singleClasses: "picker_4"
+				singleDatePicker: true,
+				locale: {
+					format: 'DD/MM/YYYY'
+				},
+				singleClasses: "picker_4"
 			}, function(start, end, label) {
 			  console.log(start.toISOString(), end.toISOString(), label);
 			});
@@ -1772,7 +1785,7 @@ if (typeof NProgress != 'undefined') {
 			  timePicker: true,
 			  timePickerIncrement: 30,
 			  locale: {
-				format: 'MM/DD/YYYY h:mm A'
+				format: 'DD/MM/YYYY h:mm A'
 			  }
 			});
 

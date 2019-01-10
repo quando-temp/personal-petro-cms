@@ -51,7 +51,7 @@
                 <td><%= petro.customer.car_number %></td>
                 <td><%= petro.customer.phone %></td>
                 <td><%= petro.customer.type_customer %></td>
-                <td><%= petro.day_fuel.strftime('%m/%d/%Y') %></td>
+                <td><%= petro.day_fuel.strftime('%d/%m/%Y') %></td>
                 <td><%= petro.customer.company %></td>
                 <% if petro.calltimes.length > 0 %>
                   <td style="background-color: #60a917; color: white">Đã thực hiện <span><%= petro.calltimes.length %></span> cuộc gọi</td>
@@ -120,7 +120,7 @@
                 <td><%= petro.customer.car_number %></td>
                 <td><%= petro.customer.phone %></td>
                 <td><%= petro.customer.type_customer %></td>
-                <td><%= petro.day_fuel.strftime('%m/%d/%Y') %></td>
+                <td><%= petro.day_fuel.strftime('%d/%m/%Y') %></td>
                 <td><%= petro.customer.company %></td>
                 <% if petro.calltimes.length > 0 %>
                   <td style="background-color: #60a917; color: white">Đã thực hiện <span><%= petro.calltimes.length %></span> cuộc gọi</td>

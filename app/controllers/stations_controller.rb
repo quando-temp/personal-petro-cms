@@ -8,7 +8,7 @@ class StationsController < ApplicationController
   # end
 
   # def create
-  #   params[:customer][:petros_attributes]["0"][:day_fuel] = DateTime.strptime(params["day_fuel"], '%m/%d/%Y')
+  #   params[:customer][:petros_attributes]["0"][:day_fuel] = DateTime.strptime(params["day_fuel"], '%d/%m/%Y')
   #   fuel = Fuel.find(params["type_of_fuel"])
   #   params[:customer][:petros_attributes]["0"][:price_fuel] = fuel.price
   #   params[:customer][:petros_attributes]["0"][:type_fuel] = fuel.name

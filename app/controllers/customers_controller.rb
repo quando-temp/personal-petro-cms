@@ -13,9 +13,13 @@ class CustomersController < ApplicationController
     @petro = @customer.petros.build
   end
 
+  def index_all
+    @customers = Customer.all
+  end 
+
   def create
-    params[:customer][:petros_attributes]["0"][:day_fuel] = DateTime.strptime(params["day_fuel"], '%m/%d/%Y')
-    fuel = Fuel.find(params["type_of_fuel"])
+    params[:customer][:petros_attributes]["0"][:day_fuel] = DateTime.strptime(params["day_fuel"], '%d/%m/%Y')
+    fuel = Fuel.find(JSON.parse(params["type_of_fuel"])[0])
     params[:customer][:petros_attributes]["0"][:price_fuel] = fuel.price
     params[:customer][:petros_attributes]["0"][:type_fuel] = fuel.name
     params[:customer][:type_customer] = Integer(customer_params[:type_customer])
