@@ -11,10 +11,11 @@ environment ENV['RACK_ENV'] || 'development'
 on_worker_boot do
   # Worker specific setup for Rails 4.1+
   # See: https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#on-worker-boot
-  ActiveRecord::Base.establish_connection
+  ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 end
 
-
+# app_dir = File.expand_path("../..", __FILE__)
+# shared_dir = "#{app_dir}/shared"
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers: a minimum and maximum.
 # Any libraries that use thread pools should be configured to match
@@ -41,5 +42,5 @@ plugin :tmp_restart
 # on_worker_boot do
 #   require "active_record"
 #   ActiveRecord::Base.connection.disconnect! rescue ActiveRecord::ConnectionNotEstablished
-#   ActiveRecord::Base.establish_connection(YAML.load_file("#{app_dir}/config/database.yml")[rails_env])
+#   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 # end
