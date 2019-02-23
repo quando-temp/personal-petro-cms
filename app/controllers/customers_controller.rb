@@ -49,6 +49,7 @@ class CustomersController < ApplicationController
   end
 
   def update
+    params[:customer][:type_customer] = Integer(customer_params[:type_customer])
     if @customer.update(customer_params)
       flash[:success] = 'Khách hàng đã được cập nhật!'
       redirect_to @customer
