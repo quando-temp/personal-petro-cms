@@ -5,5 +5,9 @@ module ApplicationHelper
       alert: 'alert-warning',
       notice: 'alert-info'
     }[flash_type.to_sym] || flash_type.to_s
-    end
+  end
+
+  def convert_money(price)
+    return price.to_s[0..-3].reverse!.scan(/.{1,3}/).join(',').reverse!
+  end
 end

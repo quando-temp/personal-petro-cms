@@ -160,9 +160,9 @@
                                 <%= petro.day_fuel.strftime('%d/%m/%Y') %>
                               <% end %>
                             </td>
-                            <td><%= petro.money %></td>
-                            <td><%= petro.amount %></td>
-                            <td><%= petro.type_fuel %> - <%= petro.price_fuel %></td>
+                            <td><%= convert_money(petro.money) %></td>
+                            <td><%= petro.amount.round(2) %></td>
+                            <td><%= petro.type_fuel %> - <%= convert_money(petro.price_fuel) %></td>
                             <td>
                               <%= link_to "Sửa giao dịch", edit_petro_path(petro.id), { :class => 'btn btn-warning' } %>
                               <%= link_to "Xóa giao dịch", petro_path(petro.id), :class => 'btn btn-danger', :method => :delete, data: {:confirm => "Bạn có chắc là muốn xóa giao dịch này?" }%>
