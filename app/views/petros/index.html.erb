@@ -52,7 +52,7 @@
                     <%= petro.day_fuel.strftime('%d/%m/%Y %H:%M') %>
                   <% end %>
                 </td>
-                <td><%= petro.money %></td>
+                <td><%= convert_money(petro.money) %></td>
                 <td><%= petro.customer.type_customer %></td>
                 <td><%= petro.customer.company %></td>
                 <td>

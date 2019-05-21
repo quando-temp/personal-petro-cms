@@ -2556,6 +2556,10 @@ if (typeof NProgress != 'undefined') {
 					}
 					if ($("#datatable-buttons1").length) {
 						$("#datatable-buttons1").DataTable({
+							order: [[ 4, 'desc' ]],
+							'columnDefs': [
+								{ orderable: false, targets: [0] }
+							],
 							dom: "Bfrtip",
 							buttons: [
 							{
