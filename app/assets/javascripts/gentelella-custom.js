@@ -2528,7 +2528,11 @@ if (typeof NProgress != 'undefined') {
 				var handleDataTableButtons = function() {
 				  if ($("#datatable-buttons").length) {
 					$("#datatable-buttons").DataTable({
-					  dom: "Bfrtip",
+						dom: "Bfrtip",
+						order: [[ 3, 'desc' ]],
+						'columnDefs': [
+							{ orderable: false, targets: [0] }
+						],
 					  buttons: [
 						{
 						  extend: "copy",
