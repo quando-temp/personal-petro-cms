@@ -45,30 +45,31 @@
           </thead>
 
           <tbody>
-            <% @usually_customers.each do |petro| %>
+            <% @usually_customers.each do |customer| %>
               <tr>
-                <td><%= petro.customer.name %></td>
-                <td><%= petro.customer.car_number %></td>
-                <td><%= petro.customer.phone %></td>
-                <td><%= petro.customer.type_customer %></td>
-                <td><%= petro.day_fuel.strftime('%d/%m/%Y') %></td>
-                <td><%= petro.customer.company %></td>
-                <% if petro.calltimes.length > 0 %>
-                  <td style="background-color: #60a917; color: white">Đã thực hiện <span><%= petro.calltimes.length %></span> cuộc gọi</td>
+                <td><%= customer.name %></td>
+                <td><%= customer.car_number %></td>
+                <td><%= customer.phone %></td>
+                <td><%= customer.type_customer %></td>
+                <td><%= customer.petro.day_fuel.strftime('%d/%m/%Y') %></td>
+                <td><%= customer.company %></td>
+                <% if customer.petro.calltimes.length > 0 %>
+                  <td style="background-color: #60a917; color: white">Đã thực hiện <span><%= customer.petro.calltimes.length %></span> cuộc gọi</td>
                 <% else %>
                   <td> chưa thực hiện cuộc gọi nào</td>
                 <% end %>
                 <td>
-                  <%= link_to calltimes_path(petro.id),:method => :get, :class => 'btn btn-primary' do %>
+                  <%= link_to calltimes_path(customer.petro.id),:method => :get, :class => 'btn btn-primary' do %>
                     <i class="glyphicon glyphicon-earphone"></i>
                     <span>Gọi</span>
                   <% end %>
-                  <%= link_to "Chi tiết", customer_path(petro.customer), { :class => 'btn btn-warning' } %>
+                  <%= link_to "Chi tiết", customer_path(customer), { :class => 'btn btn-warning' } %>
                 </td>
               </tr>
             <% end %>
           </tbody>
         </table>
+        <%= paginate @usually_customers %>
       </div>
     </div>
   </div>
@@ -114,30 +115,32 @@
           </thead>
 
           <tbody>
-            <% @rarely_customers.each do |petro| %>
+            <% @rarely_customers.each do |customer| %>
               <tr>
-                <td><%= petro.customer.name %></td>
-                <td><%= petro.customer.car_number %></td>
-                <td><%= petro.customer.phone %></td>
-                <td><%= petro.customer.type_customer %></td>
-                <td><%= petro.day_fuel.strftime('%d/%m/%Y') %></td>
-                <td><%= petro.customer.company %></td>
-                <% if petro.calltimes.length > 0 %>
-                  <td style="background-color: #60a917; color: white">Đã thực hiện <span><%= petro.calltimes.length %></span> cuộc gọi</td>
+                <td><%= customer.name %></td>
+                <td><%= customer.car_number %></td>
+                <td><%= customer.phone %></td>
+                <td><%= customer.type_customer %></td>
+                <td><%= customer.petro.day_fuel.strftime('%d/%m/%Y') %></td>
+                <td><%= customer.company %></td>
+                <% if customer.petro.calltimes.length > 0 %>
+                  <td style="background-color: #60a917; color: white">Đã thực hiện <span><%= customer.petro.calltimes.length %></span> cuộc gọi</td>
                 <% else %>
                   <td> chưa thực hiện cuộc gọi nào</td>
                 <% end %>
                 <td>
-                  <%= link_to calltimes_path(petro.id),:method => :get, :class => 'btn btn-primary' do %>
+                  <%= link_to calltimes_path(customer.petro.id),:method => :get, :class => 'btn btn-primary' do %>
                     <i class="glyphicon glyphicon-earphone"></i>
                     <span>Gọi</span>
                   <% end %>
-                  <%= link_to "Chi tiết", customer_path(petro.customer), { :class => 'btn btn-warning' } %>
+                  <%= link_to "Chi tiết", customer_path(customer), { :class => 'btn btn-warning' } %>
                 </td>
               </tr>
             <% end %>
           </tbody>
         </table>
+
+        <%= paginate @rarely_customers %>
       </div>
     </div>
   </div>
