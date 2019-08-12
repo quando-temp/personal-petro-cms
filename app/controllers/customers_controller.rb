@@ -14,7 +14,8 @@ class CustomersController < ApplicationController
   end
 
   def index_all
-    @customers = Customer.all.page(params[:page]).per(100)
+    # @customers = Customer.all.includes[:petro].page(params[:page]).per(100)
+    @customers = Customer.all.includes(:petros).order(id: :desc)
   end 
 
   def create

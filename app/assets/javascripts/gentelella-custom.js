@@ -2558,9 +2558,42 @@ if (typeof NProgress != 'undefined') {
 					  responsive: true
 					});
 					}
+					if ($("#datatable-buttons2").length) {
+						$("#datatable-buttons2").DataTable({
+							dom: "Bfrtip",
+							order: [[ 3, 'desc' ]],
+							'columnDefs': [
+								{ orderable: false, targets: [0] }
+							],
+							buttons: [
+							{
+								extend: "copy",
+								className: "btn-sm"
+							},
+							{
+								extend: "csv",
+								className: "btn-sm"
+							},
+							{
+								extend: "excel",
+								className: "btn-sm"
+							},
+							{
+								extend: "pdfHtml5",
+								className: "btn-sm"
+							},
+							{
+								extend: "print",
+								className: "btn-sm"
+							},
+							],
+							responsive: true
+						});
+						}
 					if ($("#datatable-buttons1").length) {
 						$("#datatable-buttons1").DataTable({
 							order: [[ 4, 'desc' ]],
+							paging: false,
 							'columnDefs': [
 								{ orderable: false, targets: [0] }
 							],
