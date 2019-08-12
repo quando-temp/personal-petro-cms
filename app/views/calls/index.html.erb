@@ -140,7 +140,7 @@
           </tbody>
         </table>
 
-        <%= paginate @rarely_customers, params: { page_rare: params[:page_rare] } %>
+        <%= paginate @rarely_customers, :params => { :page_rare "page_rare" } %>
       </div>
     </div>
   </div>
