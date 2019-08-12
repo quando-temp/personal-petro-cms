@@ -155,7 +155,7 @@
                       <tbody>
                         <% @petros.each do |petro| %>
                           <tr>
-                            <td>
+                            <td data-order="<%= petro.day_fuel %>">
                               <% if petro.day_fuel %>
                                 <%= petro.day_fuel.strftime('%d/%m/%Y') %>
                               <% end %>
