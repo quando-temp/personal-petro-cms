@@ -14,7 +14,7 @@ class CustomersController < ApplicationController
   end
 
   def index_all
-    @customers = Customer.all.page(params[:page])
+    @customers = Customer.all.page(params[:page]).per(100)
   end 
 
   def create
@@ -36,7 +36,7 @@ class CustomersController < ApplicationController
   end
 
   def index
-    @customers = Customer.all
+    @customers = Customer.all.page(params[:page])
   end
 
   def show
