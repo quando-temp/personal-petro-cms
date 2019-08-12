@@ -2562,7 +2562,6 @@ if (typeof NProgress != 'undefined') {
 							dom: "Bfrtip",
 							"targets": 'no-sort',
 							"bSort": false,
-							paging: false,
 							"order": [],
 							'columnDefs': [
 								{ orderable: false, targets: [0] }
