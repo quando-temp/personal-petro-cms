@@ -2529,9 +2529,6 @@ if (typeof NProgress != 'undefined') {
 				  if ($("#datatable-buttons").length) {
 					$("#datatable-buttons").DataTable({
 						dom: "Bfrtip",
-						'columnDefs': [
-							{ orderable: false, targets: [0] }
-						],
 					  buttons: [
 						{
 						  extend: "copy",
