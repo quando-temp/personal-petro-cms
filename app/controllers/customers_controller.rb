@@ -20,7 +20,7 @@ class CustomersController < ApplicationController
       end_date = DateTime.parse(params[:end])
       @customers =  Petro.all.where("day_fuel BETWEEN ? AND ?",start_date, end_date).group_by(&:customer)
     else
-      @customers = []
+      @customers = nil
     end
   end 
 
