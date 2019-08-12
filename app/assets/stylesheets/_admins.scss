@@ -19,3 +19,10 @@
 .alert-warning {
   animation: cssAnimation 0s 15s forwards;
 }
+table.dataTable thead .sorting, 
+table.dataTable thead .sorting_asc, 
+table.dataTable thead .sorting_desc {
+  &:after {
+    content: '';
+  }
+}

@@ -2529,6 +2529,9 @@ if (typeof NProgress != 'undefined') {
 				  if ($("#datatable-buttons").length) {
 					$("#datatable-buttons").DataTable({
 						dom: "Bfrtip",
+						"targets": 'no-sort',
+						"bSort": false,
+						"order": [],
 					  buttons: [
 						{
 						  extend: "copy",
@@ -2557,7 +2560,10 @@ if (typeof NProgress != 'undefined') {
 					if ($("#datatable-buttons2").length) {
 						$("#datatable-buttons2").DataTable({
 							dom: "Bfrtip",
-							order: [[ 3, 'desc' ]],
+							"targets": 'no-sort',
+							"bSort": false,
+							paging: false,
+							"order": [],
 							'columnDefs': [
 								{ orderable: false, targets: [0] }
 							],
@@ -2588,8 +2594,10 @@ if (typeof NProgress != 'undefined') {
 						}
 					if ($("#datatable-buttons1").length) {
 						$("#datatable-buttons1").DataTable({
-							order: [[ 4, 'desc' ]],
 							paging: false,
+							"targets": 'no-sort',
+							"bSort": false,
+							"order": [],
 							'columnDefs': [
 								{ orderable: false, targets: [0] }
 							],
