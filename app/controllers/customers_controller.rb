@@ -82,7 +82,7 @@ class CustomersController < ApplicationController
   end
 
   def set_init_date
-    Customer.all.page(params[:page]).per(1000).each do |customer|
+    Customer.all.page(params[:page]).per(params[:limit]).each do |customer|
       customer.update(last_date_petro: customer.petros[0].day_fuel)
     end
   end
