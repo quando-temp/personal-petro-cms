@@ -1583,10 +1583,10 @@ if (typeof NProgress != 'undefined') {
 			var optionSet1 = {
 			  startDate: moment().subtract(29, 'days'),
 			  endDate: moment(),
-			  minDate: '01/01/2012',
-			  maxDate: '12/31/2015',
+			  minDate: '01/01/2019',
+			  maxDate: '12/31/2023',
 			  dateLimit: {
-				days: 60
+					days: 150
 			  },
 			  showDropdowns: true,
 			  showWeekNumbers: true,
@@ -1628,6 +1628,7 @@ if (typeof NProgress != 'undefined') {
 			  console.log("hide event fired");
 			});
 			$('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+				document.location.href = '/customers/all?start='+ picker.startDate.format('MMMM D, YYYY') +'&end='+picker.endDate.format('MMMM D, YYYY');
 			  console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
 			});
 			$('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
@@ -2563,6 +2564,7 @@ if (typeof NProgress != 'undefined') {
 							"targets": 'no-sort',
 							"bSort": false,
 							"order": [],
+							"paging": false,
 							'columnDefs': [
 								{ orderable: false, targets: [0] }
 							],

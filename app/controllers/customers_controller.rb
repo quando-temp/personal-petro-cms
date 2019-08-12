@@ -15,7 +15,13 @@ class CustomersController < ApplicationController
 
   def index_all
     # @customers = Customer.all.includes[:petro].page(params[:page]).per(100)
-    @customers = Customer.all.includes(:petros).order(id: :desc)
+    if params[:start] && params[:end]
+      start_date =  DateTime.parse(params[:start])
+      end_date = DateTime.parse(params[:end])
+      @customers =  Petro.all.where("day_fuel BETWEEN ? AND ?",start_date, end_date).group_by(&:customer)
+    else
+      @customers = []
+    end
   end 
 
   def create
