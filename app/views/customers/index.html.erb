@@ -51,9 +51,9 @@
                 <td><%= customer.name %></td>
                 <td><%= customer.car_number %></td>
                 <td><%= customer.phone %></td>
-                <% petros = Customer.find(customer.id).petros.order('day_fuel DESC') %>
-                <% if petros.length > 0 %>
-                  <td><%= petros[0].day_fuel.strftime('%d/%m/%Y') %></td>
+                <% petros = customer.petros %>
+                <% if customer.petros.length > 0 %>
+                  <td><%= customer.last_date_petro.strftime('%d/%m/%Y') %></td>
                   <td><%= petros.inject(0){|sum,x| sum + x.amount }.round(2) %></td>
                   <td><%= convert_money(petros.inject(0){|sum,x| sum + x.money })%></td>
                 <% else %>

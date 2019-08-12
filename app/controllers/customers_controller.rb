@@ -37,7 +37,7 @@ class CustomersController < ApplicationController
   end
 
   def index
-    @customers = Customer.all.page(params[:page])
+    @customers = Customer.all.includes(:petros).order(last_date_petro: :desc).page(params[:page])
   end
 
   def show
@@ -79,6 +79,12 @@ class CustomersController < ApplicationController
       redirect_to new_customer_path(car: search_num), notice: 'Biến số xe không tồn tại, vui lòng tạo khách hàng mới.' 
     end
 
+  end
+
+  def set_init_date
+    Customer.all.page(params[:page]).per(1000).each do |customer|
+      customer.update(last_date_petro: customer.petros[0].day_fuel)
+    end
   end
 
   private

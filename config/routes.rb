@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   root to: "sessions#new"
   get "/customers/all" => 'customers#index_all', :as => 'customers_all'
   resources :admins
-  resources :customers
+  resources :customers do
+    collection do
+      get 'set_init_date'
+    end
+  end
   resources :petros
   resources :fuels
   resources :calls
