@@ -42,7 +42,7 @@ class CustomersController < ApplicationController
 
   def show
     @petro = Petro.new
-    @petros = Petro.where(customer_id: params[:id]).order(day_fuel: 'desc')
+    @petros = Petro.where(customer_id: params[:id]).order(day_fuel: :desc)
     @fuels = Fuel.all
   end
   
