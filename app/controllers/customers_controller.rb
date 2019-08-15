@@ -32,6 +32,7 @@ class CustomersController < ApplicationController
     params[:customer][:type_customer] = Integer(customer_params[:type_customer])
     params[:customer][:car_number] = params[:customer][:car_number].gsub(/\s+/, "").upcase
     params[:customer][:petros_attributes]["0"][:amount] = Float(params[:customer][:petros_attributes]["0"][:money])/Float(params[:customer][:petros_attributes]["0"][:price_fuel])
+    params[:customer][:last_date_petro] = params[:customer][:petros_attributes]["0"][:day_fuel]
     @customer = Customer.new(customer_params)
     if @customer.save 
       flash[:success] = 'Khách hàng đã được tạo.'
