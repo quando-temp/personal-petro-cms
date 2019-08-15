@@ -1,8 +1,9 @@
 class Customer < ApplicationRecord
   enum type_customer: ['Thường xuyên', 'Không thường xuyên']
   has_many :petros, -> { order "day_fuel DESC" }, :dependent => :destroy
+  has_many :day_fuel_petros, :dependent => :destroy, class_name: 'Petro'
   has_one :petro, -> { order "id DESC" }, class_name: 'Petro'
-  accepts_nested_attributes_for :petros, :allow_destroy => true
+  accepts_nested_attributes_for :day_fuel_petros, :allow_destroy => true
   
   validates :name, 
     length: { 

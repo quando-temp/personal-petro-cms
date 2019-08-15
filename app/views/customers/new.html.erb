@@ -85,7 +85,7 @@
             </div>
             <div class="clearfix"></div>
             <h2>Lần giao dịch đầu tiên</h2>
-            <%= f.fields_for :petros do |sf| %>
+            <%= f.fields_for :day_fuel_petros do |sf| %>
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Số tiền giao dịch (VND)<span class="required">*</span>
                 </label>
@@ -155,12 +155,12 @@
 <script>
   $('#type_of_fuel').change(function() {
     var val = JSON.parse($("#type_of_fuel").val())[1];
-    var amount = $('#customer_petros_attributes_0_money').val()/val;
+    var amount = $('#customer_day_fuel_petros_attributes_0_money').val()/val;
     $('#amount').val(amount.toFixed(2));
   });
-  $('#customer_petros_attributes_0_money').blur(function() {
+  $('#customer_day_fuel_petros_attributes_0_money').blur(function() {
     var val = JSON.parse($("#type_of_fuel").val())[1];
-    var amount = $('#customer_petros_attributes_0_money').val()/val;
+    var amount = $('#customer_day_fuel_petros_attributes_0_money').val()/val;
     $('#amount').val(amount.toFixed(2));
   });
 </script>

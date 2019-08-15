@@ -10,7 +10,7 @@ class CustomersController < ApplicationController
       @customer.car_number = content
     end
     @fuels = Fuel.all
-    @petro = @customer.petros.build
+    @petro = @customer.day_fuel_petros.build
   end
 
   def index_all
@@ -25,14 +25,14 @@ class CustomersController < ApplicationController
   end 
 
   def create
-    params[:customer][:petros_attributes]["0"][:day_fuel] = DateTime.strptime(params["day_fuel"], '%d/%m/%Y')
+    params[:customer][:day_fuel_petros_attributes]["0"][:day_fuel] = DateTime.strptime(params["day_fuel"], '%d/%m/%Y')
     fuel = Fuel.find(JSON.parse(params["type_of_fuel"])[0])
-    params[:customer][:petros_attributes]["0"][:price_fuel] = fuel.price
-    params[:customer][:petros_attributes]["0"][:type_fuel] = fuel.name
+    params[:customer][:day_fuel_petros_attributes]["0"][:price_fuel] = fuel.price
+    params[:customer][:day_fuel_petros_attributes]["0"][:type_fuel] = fuel.name
     params[:customer][:type_customer] = Integer(customer_params[:type_customer])
     params[:customer][:car_number] = params[:customer][:car_number].gsub(/\s+/, "").upcase
-    params[:customer][:petros_attributes]["0"][:amount] = Float(params[:customer][:petros_attributes]["0"][:money])/Float(params[:customer][:petros_attributes]["0"][:price_fuel])
-    params[:customer][:last_date_petro] = params[:customer][:petros_attributes]["0"][:day_fuel]
+    params[:customer][:day_fuel_petros_attributes]["0"][:amount] = Float(params[:customer][:day_fuel_petros_attributes]["0"][:money])/Float(params[:customer][:day_fuel_petros_attributes]["0"][:price_fuel])
+    params[:customer][:last_date_petro] = params[:customer][:day_fuel_petros_attributes]["0"][:day_fuel]
     @customer = Customer.new(customer_params)
     if @customer.save 
       flash[:success] = 'Khách hàng đã được tạo.'
@@ -102,6 +102,6 @@ class CustomersController < ApplicationController
   end
 
   def customer_params
-  	params.require(:customer).permit(:name,:phone, :car_number, :company, :type_customer, petros_attributes: [:money, :amount, :type_fuel, :day_fuel, :price_fuel]) 
+  	params.require(:customer).permit(:name,:phone, :car_number, :company, :type_customer, day_fuel_petros_attributes: [:money, :amount, :type_fuel, :day_fuel, :price_fuel]) 
   end
 end
