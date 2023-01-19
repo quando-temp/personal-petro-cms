@@ -91,7 +91,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.0.5)
+    concurrent-ruby (1.1.10)
     erubi (1.6.1)
     execjs (2.7.0)
     fastclick-rails (1.0.1)
@@ -117,9 +117,10 @@ GEM
       sass-rails (>= 5.0)
       select2-rails
       switchery-rails
-    globalid (0.4.0)
-      activesupport (>= 4.2.0)
-    i18n (0.8.6)
+    globalid (1.0.1)
+      activesupport (>= 5.0)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
     icheck-rails (1.0.2.2)
       jquery-rails
       rails (>= 3.1.0)
@@ -156,7 +157,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.2.0)
-    minitest (5.10.2)
+    minitest (5.17.0)
     modernizr-rails (2.7.1)
     momentjs-rails (2.20.1)
       railties (>= 3.1)
@@ -246,7 +247,7 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.7)
-    tzinfo (1.2.3)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
